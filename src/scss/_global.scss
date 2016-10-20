@@ -1,0 +1,225 @@
+$susy: (
+  container: auto,
+  columns: 12,
+  gutters: .25,
+  math: fluid,
+  global-box-sizing: border-box
+);
+
+$s: max-width 767px;
+$m-down: max-width 1099px;
+$m: 768px 1023px;
+$m-up: min-width 768px;
+$l-down: max-width 1319px;
+$l: 1024px 1319px;
+$l-up: min-width 1024px;
+$xl: min-width 1320px;
+
+$main-color: #222;
+$main-bg: #f3f2f1;
+$accent: #e3e2e1;
+
+::selection {
+  background: $accent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+
+  @include breakpoint($m) {
+    font-size: 23px;
+  }
+
+  @include breakpoint($l-up) {
+    font-size: 25px;
+  }
+}
+
+body {
+  padding: 0 0 8rem;
+  background: $main-bg;
+  color: $main-color;
+  font-family: 'Haas Grot Text', sans-serif;
+  font-size: 1rem;
+  line-height: 1.25em;
+  letter-spacing: -.005em;
+  text-size-adjust: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::after {
+    content: '';
+    position: fixed;
+    top: 1.25rem;
+    right: 0;
+    left: 0;
+    height: 10000px;
+    z-index: 20;
+    background: url('images/pattern-small.png') center top repeat-y;
+    background-size: contain;
+    pointer-events: none;
+
+    @include breakpoint($m-up) {
+      background-image: url('images/pattern.png');
+    }
+  }
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+a {
+  color: $main-color;
+  text-decoration: none;
+  background: rgba($main-color, .1);
+  margin: 0 -2px;
+  padding: 2px 2px 0;
+
+  &:hover {
+    background: #fff500;
+  }
+}
+
+.intro,
+.events {
+  border-bottom: 1px solid rgba($main-color, .6);
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+
+.container {
+  @include container;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @include breakpoint($m) {
+    padding: 0 3rem 0 3rem;
+  }
+
+  @include breakpoint($l-up) {
+    padding: 0 4rem 0 4rem;
+  }
+}
+
+.logo-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.logo {
+  @include hide-text;
+  width: 11rem;
+  height: 5rem;
+  background: url('images/logo-01.svg') center top no-repeat;
+  background-size: contain;
+  pointer-events: none;
+
+  @include breakpoint($m-up) {
+    width: 11rem;
+  }
+}
+
+.intro {
+  padding-top: 3.5rem;
+
+  p {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .loud {
+    margin-bottom: 1rem;
+    font-family: 'Media77', sans-serif;
+    font-size: 2rem;
+    line-height: 1em;
+    word-spacing: -.04em;
+    letter-spacing: -.02em;
+  }
+}
+
+.events {
+  .event {
+    margin-bottom: 1.8em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .date {
+    margin-bottom: .2em;
+    font-size: .62rem;
+    line-height: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+
+    span, a {
+      margin-left: .5em;
+    }
+  }
+
+  h2 {
+    font-family: 'Media77', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1em;
+    margin-bottom: .8rem;
+    margin-left: -.07em;
+    word-spacing: -.04em;
+    letter-spacing: -.02em;
+
+    @include breakpoint($m-up) {
+      padding-right: 15%;
+    }
+  }
+}
+
+.roll-call {
+  font-size: .75em;
+  line-height: 1.25em;
+
+  .row {
+    clear: both;
+    @include clearfix;
+    padding-bottom: .5em;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  li:after {
+    content: ',';
+  }
+
+  li:last-child:after {
+    content: '';
+  }
+
+  h2 {
+    @include span(3);
+  }
+
+  ul {
+    @include span(last 9);
+  }
+
+  .copyright {
+    margin-top: 1.5rem;
+  }
+}
