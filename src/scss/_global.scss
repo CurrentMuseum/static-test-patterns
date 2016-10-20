@@ -62,13 +62,19 @@ body {
     left: 0;
     height: 10000px;
     z-index: 20;
-    background: url('images/pattern-small.png') center top repeat-y;
+    // background: url('images/pattern-small.png') center top repeat-y;
     background-size: contain;
     pointer-events: none;
+    opacity: .3;
 
     @include breakpoint($m-up) {
       background-image: url('images/pattern.png');
     }
+  }
+
+  em,
+  i {
+    font-family: 'Haas Grot Text Italic', sans-serif;
   }
 }
 
@@ -87,6 +93,8 @@ a {
   &:hover {
     background: #fff500;
   }
+
+  &.highlight { background: #fff500; &:hover { background: #e6dd00; } }
 }
 
 .intro,
@@ -164,7 +172,7 @@ a {
 
   .date {
     margin-bottom: .2em;
-    font-size: .62rem;
+    font-size: .72rem;
     line-height: 1.25em;
     text-transform: uppercase;
     letter-spacing: .06em;
@@ -185,6 +193,10 @@ a {
 
     @include breakpoint($m-up) {
       padding-right: 15%;
+    }
+
+    i, em {
+      font-family: 'Media77 Italic', sans-serif;
     }
   }
 }
