@@ -26,7 +26,8 @@
     "test",
     "tests",
     ".sass-cache",
-    "build"
+    "build",
+    "docs"
   ],
   "dependencies": {
     "susy": "^2.2.12",

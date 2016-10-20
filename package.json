@@ -1,5 +1,5 @@
 {
-  "name": "shanghai-project",
+  "name": "current-museum-static-test-patterns",
   "private": true,
   "devDependencies": {
     "autoprefixer": "^6.3.3",
@@ -25,6 +25,6 @@
     "scut": "^1.4.0"
   },
   "scripts": {
-    "postinstall": "gulp setup"
+    "postinstall": "gulp build"
   }
 }
