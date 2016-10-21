@@ -112,7 +112,7 @@ a {
     background-size: contain;
     pointer-events: none;
     opacity: .9;
-    
+
     @include breakpoint($m-up) {
       background-image: url('images/pattern.png');
     }
@@ -171,7 +171,7 @@ a {
   }
 
   .date {
-    margin-bottom: .2em;
+    margin-bottom: .25em;
     font-size: .72rem;
     line-height: 1.25em;
     text-transform: uppercase;
