@@ -54,24 +54,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  &::after {
-    content: '';
-    position: fixed;
-    top: 1.25rem;
-    right: 0;
-    left: 0;
-    height: 10000px;
-    z-index: 20;
-    // background: url('images/pattern-small.png') center top repeat-y;
-    background-size: contain;
-    pointer-events: none;
-    opacity: .3;
-
-    @include breakpoint($m-up) {
-      background-image: url('images/pattern.png');
-    }
-  }
-
   em,
   i {
     font-family: 'Haas Grot Text Italic', sans-serif;
@@ -91,10 +73,10 @@ a {
   padding: 2px 2px 0;
 
   &:hover {
-    background: #fff500;
+    background: #E3A1A6;
   }
 
-  &.highlight { background: #fff500; &:hover { background: #e6dd00; } }
+  &.highlight { background: #D77980; &:hover { background: #E3A1A6; } }
 }
 
 .intro,
@@ -116,6 +98,24 @@ a {
 
   @include breakpoint($l-up) {
     padding: 0 4rem 0 4rem;
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    top: 1.25rem;
+    right: 0;
+    left: 0;
+    height: 10000px;
+    z-index: -1;
+    // background: url('images/pattern-small.png') center top repeat-y;
+    background-size: contain;
+    pointer-events: none;
+    opacity: .9;
+    
+    @include breakpoint($m-up) {
+      background-image: url('images/pattern.png');
+    }
   }
 }
 
