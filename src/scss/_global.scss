@@ -145,7 +145,7 @@ a {
 }
 
 .intro {
-  padding-top: 3.5rem;
+  padding-top: 3rem;
 
   p {
     margin-bottom: 1rem;
@@ -162,6 +162,10 @@ a {
     line-height: 1em;
     word-spacing: -.04em;
     letter-spacing: -.02em;
+  }
+
+  .quiet {
+    font-size: .75em;
   }
 }
 
