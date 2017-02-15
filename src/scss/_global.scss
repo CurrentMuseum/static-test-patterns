@@ -118,7 +118,7 @@ a {
     opacity: .55;
 
     @include breakpoint($m-up) {
-      background-image: url('images/pattern.png');
+      // background-image: url('images/pattern.png');
     }
   }
 }
