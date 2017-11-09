@@ -243,3 +243,18 @@ a {
     margin-top: 1.5rem;
   }
 }
+
+ul.formatted-list {
+  list-style: disc;
+  padding: 0px 0px 50px 25px;
+
+  ul {
+    list-style: circle;
+    padding-left: 50px;
+  }
+
+}
+
+hr.divider {
+  margin: 50px 0px;
+}
