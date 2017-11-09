@@ -6,12 +6,12 @@ We are a non-profit institution devoted to electronic media. Our mission is to c
 This website is a test of our new branding by Project Projects for our Test Patterns show in Nov/Dec of 2016.
 
 ## Installation
-1. Confirm that npm, gulp, gulp-cli, and bower are installed
-2. Build the npm dependencies ```$ npm install```
-2. Build the bower dependencies ```$ bower install```
-3. Build the gulp dependencies ```$ gulp build```
-4. Add the remote ```$ git remote add static-build git@github.com:CurrentMuseum/static-test-patterns.git```
+1. Clone respository ```git clone https://github.com/CurrentMuseum/static-test-patterns.git```
+2. Confirm that npm, gulp, gulp-cli, and bower are installed globally
+3. Build the npm dependencies ```$ npm install```
+4. Build the bower dependencies ```$ bower install```
+5. Build the gulp dependencies ```$ gulp build```
 
 ## Notes
-- The /docs file contains the build and is where Github's Pages static site host looks for content
+- The /docs file contains the gulp build and is where Github's Pages static site host looks for content. Edit files in /src
 - A @ A-record has been set up on current.mu that points to the Github Pages server

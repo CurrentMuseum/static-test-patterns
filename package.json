@@ -23,8 +23,5 @@
     "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
     "scut": "^1.4.0"
-  },
-  "scripts": {
-    "postinstall": "gulp build"
   }
 }
