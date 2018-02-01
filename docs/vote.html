@@ -8,10 +8,6 @@
   
 <style>
   
-  body {
-    font-family: helvetica;
-  }
-  
 /* Vote Switch Styling */
 .switch {
   position: relative;
@@ -61,27 +57,25 @@ input:checked + .slider:before {
 }
 
 /* Table styling */
-.table-wrapper {
-  margin: 20px;
-}
   
 table#artwork-data {
   margin: 20px auto 80px auto;
 }
+
+tr { }
   
 td, th {
-    padding: 5px 20px 5px 0px;
+    padding: 8px 10px 8px 10px;
     vertical-align: top;
     text-align: left;
 }
-  
-td.artwork-price {
-  text-align: right;
+
+.artwork-image {
+  width: 115px;
 }
-  
-td img {
-    height: 100px
-}
+
+/* Logo */
+#logo { width: 100%; }
 
 /* Submission */
   #budget-and-submit-wrapper {
@@ -91,21 +85,28 @@ td img {
     text-align: center;
     background-color: black;
     color: white;
+    z-index: 2;
   }
   
   #submit-vote {
     padding: 20px;
   }
   #submit-vote input {
-    padding: 12px;
-    margin-right: 5px;
+    padding: 10px;
+    margin-right: 10px;
     width: 50%;
+    font-size: 15px;
+  }
+  .submitting {
+    background-color: #2196F3 !important;
+    color: white !important;
   }
   
 /* Misc. Styling */
 body {
   margin: 0px;
   text-align: center;
+  font-family: helvetica;
 }
 .button {
     background-color: white; /* Green */
@@ -129,32 +130,35 @@ body {
   var startingBudget = 20000, // set the initial budget available
       remainingBudget,
       lowestArtworkPrice,
-      googleFormURL = 'https://script.google.com/macros/u/0/s/AKfycbwBz1uFAzkj5PXxs6mArqWoBG6EznsXL9ziY3gTUj8YJdzuX1hN/exec'; // 
+      googleFormURL = 'https://script.google.com/macros/s/AKfycbwBz1uFAzkj5PXxs6mArqWoBG6EznsXL9ziY3gTUj8YJdzuX1hN/exec'; // 
 
+  $(window).on('load', function() {
+    $('#submit-vote').toggle(); // hide the submission area until we vote
+    countBudget(); // kick off the initial count
 
-  $('#submit-vote').toggle(); // hide the submission area until we vote
-  countBudget(); // kick off the initial count
+    $('#artwork-data input').click(function() {
+      countBudget(this); // when a checkbox is clicked, calculate our remaining budget
+    });
 
-  $('#artwork-data input').click(function() {
-    countBudget(this); // when a checkbox is clicked, calculate our remaining budget
-  });
+    $('#vote-button').on('click', function(e) {
+      e.preventDefault();
+      if(!$('#vote-button').hasClass('submitting')) {
+        $('#vote-button').addClass('submitting');
+        $('#vote-button').html('Processing...');
 
-  $('#vote-button').on('click', function(e) {
-    e.preventDefault();
-    var vote = serializeVote();
-    var jqxhr = $.ajax({
-      url: googleFormURL,
-      method: "GET",
-      dataType: "json",
-      data: vote,
-      success: function() {
-        console.log('success');
+        var vote = serializeVote();
+        var jqxhr = $.ajax({
+          url: googleFormURL,
+          method: "GET",
+          dataType: "json",
+          data: vote,
+          success: function() {
+            $('#budget-remaining-container h3').text("Thanks! Your vote has been counted.");
+            swapBudgetElements();
+          }
+        })
       }
-    })
-  })
-
-  $( window ).load(function() {
-    
+    });
   });
 
   function parseDollar(numText) {
@@ -173,7 +177,7 @@ body {
 
   function swapBudgetElements() {
     $('#submit-vote').toggle(); // allow the user to submit their vote
-    $('#budget-remaining').toggle();
+    $('#budget-remaining-container').toggle();
   }
 
   function getLowestPriceAvailableArtwork() {
@@ -199,22 +203,21 @@ body {
     });
     
     if(remainingBudget < 0) { // we tried to over-spend
-      $(clickedElement).prop('checked', false); // uncheck the artwork
       alert("There isn't enough budget left for that work");
+      $(clickedElement).prop('checked', false); // uncheck the artwork
       countBudget(clickedElement); // re-run the count budget logic
     } else if(remainingBudget < lowestArtworkPrice) { // we spent all the money
-      swapBudgetElements();
+      if(!$('#submit-vote').is(':visible')) {
+        swapBudgetElements(); // if we had the submit vote visible, then hide it again
+      }
     } else { // we can spend more
-      $('.results tr input[name*="artwork-acquire"]:not(:checked)').each(function (i, checkbox) { // find all the artwork leftover
-        $(checkbox).removeAttr('disabled'); // enable the buttons again
-        if($('#submit-vote').is(':visible')) {
-          swapBudgetElements(); // if we had the submit vote visible, then hide it again
-        }
-      });
+      if($('#submit-vote').is(':visible')) {
+        swapBudgetElements(); // if we had the submit vote visible, then hide it again
+      }
     }
 
-    if($('#budget-remaining').is(":visible")) {
-      $('#budget-remaining').fadeOut(150, function() {
+    if($('#budget-remaining-container').is(":visible")) {
+      $('#budget-remaining-container').fadeOut(150, function() {
         $('#remaining-budget').text(formatMoney(remainingBudget, 0, "$", ",", ".")); // update the remaining budget
       }).fadeIn(150);
     }
@@ -222,7 +225,19 @@ body {
   }
 
   function serializeVote() {
-    var serializedVote = {};
+    var serializedVote = {
+      email: '',
+      artwork_1: 0,
+      artwork_2: 0,
+      artwork_3: 0,
+      artwork_4: 0,
+      artwork_5: 0,
+      artwork_6: 0,
+      artwork_7: 0,
+      artwork_8: 0,
+      artwork_9: 0,
+      artwork_10: 0
+    };
     serializedVote.email = $('#email-input').val();
     
     $('.results tr input[name*="artwork-acquire"]:checked').each(function (i, checkbox) { // find all the artwork leftover
@@ -238,58 +253,116 @@ body {
 
 </head>
 <body>
-  <img src="http://www.current.mu/images/logo-01.svg" />
-  <h2>Cast Your Vote</h2>
+  <img id="logo" src="http://www.current.mu/images/logo-01.svg" />
+  <h2>Committee Acquisition Vote</h2>
   
   <div id="budget-and-submit-wrapper">
-    <div id="budget-remaining"><h3><span id="remaining-budget"></span> Budget Remaining</h3></div>
+    <div id="budget-remaining-container"><h3><span id="remaining-budget"></span> Budget Remaining</h3></div>
     <div id="submit-vote">
       <input type="text" placeholder="Enter Your Email" id="email-input">
-      <span class="button" id="vote-button">VOTE</div>
+      <span class="button" id="vote-button">VOTE</span>
     </div>
   </div>
-  <div class="table-wrapper">
-    <table id="artwork-data" class="data">
-        <thead class="header">
-            <tr>
-                <th>Acquire</th>
-                <th>Image</th>
-                <th>Price</th>
-                <!-- <th>Title</th> -->
-                <th>Artist</th>
-            </tr>
-        </thead>
-        <tbody class="results">
-            <tr>
-                <th>
-                  <label class="switch">
-                  <input type="checkbox" name="artwork-acquire" artid="artwork_1">
-                  <span class="slider"></span>
-                  </label>
-                </th>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"></td>
-                <td class="artwork-price">$15,000</td>
-                <!-- <td>Placeholder Title</td> -->
-                <td>Leonardo da Vinci</td>
-            </tr>
-            <tr>
-                <th>
-                  <label class="switch">
-                  <input type="checkbox" name="artwork-acquire" artid="artwork_2">
-                  <span class="slider"></span>
-                  </label>
-                </th>
-                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"></td>
-                <td class="artwork-price">$10,000</td>
-                <!-- <td>Placeholder Title</td> -->
-                <td>Leonardo da Vinci</td>
-            </tr>
-          
 
-          
+  <table id="artwork-data" class="data">
+      <thead class="header">
+          <tr>
+              <th></th>
+              <th>Artwork</th>
+              <th>Price</th>
+              <!-- <th>Title</th> -->
+              <th>Artist</th>
+          </tr>
+      </thead>
+      <tbody class="results">
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_1">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_1.png" class="artwork-image"></td>
+              <td class="artwork-price">$6,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Snow Yunexu Hu</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_2">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_2.png" class="artwork-image"></td>
+              <td class="artwork-price">$8,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Jakob Kudusk Steensen</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_3">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_3.png" class="artwork-image"></td>
+              <td class="artwork-price">$5,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>LaTurbo Avedon</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_4">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_4.png" class="artwork-image"></td>
+              <td class="artwork-price">$16,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Jacolby Satterwhite</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_5">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_5.png" class="artwork-image"></td>
+              <td class="artwork-price">$6,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Snow Yunexu Hu</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_6">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_6.png" class="artwork-image"></td>
+              <td class="artwork-price">$1,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Ryan Kuo</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_7">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_image_7.png" class="artwork-image"></td>
+              <td class="artwork-price">$6,500</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>Meriem Bennani</td>
+          </tr>
+        
 
-        </tbody>
-    </table>
-  </div>
+      </tbody>
+  </table>
+
 </body>
 </html>
