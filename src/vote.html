@@ -76,31 +76,32 @@ td, th {
 
 /* Logo */
 #logo { width: 100%; }
+#subheader { margin-bottom: 25px; }
 
 /* Submission */
-  #budget-and-submit-wrapper {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    text-align: center;
-    background-color: black;
-    color: white;
-    z-index: 2;
-  }
-  
-  #submit-vote {
-    padding: 20px;
-  }
-  #submit-vote input {
-    padding: 10px;
-    margin-right: 10px;
-    width: 50%;
-    font-size: 15px;
-  }
-  .submitting {
-    background-color: #2196F3 !important;
-    color: white !important;
-  }
+#budget-and-submit-wrapper {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  background-color: black;
+  color: white;
+  z-index: 2;
+}
+
+#submit-vote {
+  padding: 20px;
+}
+#submit-vote input {
+  padding: 10px;
+  margin-right: 10px;
+  width: 50%;
+  font-size: 15px;
+}
+.submitting {
+  background-color: #2196F3 !important;
+  color: white !important;
+}
   
 /* Misc. Styling */
 body {
@@ -120,6 +121,9 @@ body {
 .button:hover {
   cursor:pointer;
 }
+.hidden {
+  display: none;
+}
   
 </style>  
 
@@ -133,7 +137,8 @@ body {
       googleFormURL = 'https://script.google.com/macros/s/AKfycbwBz1uFAzkj5PXxs6mArqWoBG6EznsXL9ziY3gTUj8YJdzuX1hN/exec'; // 
 
   $(window).on('load', function() {
-    $('#submit-vote').toggle(); // hide the submission area until we vote
+    $('#submit-vote').removeClass('hidden').toggle(); // hide the submission area until we vote.removeClass('hidden')
+
     countBudget(); // kick off the initial count
 
     $('#artwork-data input').click(function() {
@@ -218,6 +223,7 @@ body {
 
     if($('#budget-remaining-container').is(":visible")) {
       $('#budget-remaining-container').fadeOut(150, function() {
+        $('#budget-remaining-descriptor').text("Budget Remaining");
         $('#remaining-budget').text(formatMoney(remainingBudget, 0, "$", ",", ".")); // update the remaining budget
       }).fadeIn(150);
     }
@@ -254,11 +260,11 @@ body {
 </head>
 <body>
   <img id="logo" src="images/logo-01.svg" />
-  <h2>Committee Acquisition Vote</h2>
+  <h2 id="subheader">Committee Acquisition Vote</h2>
   
   <div id="budget-and-submit-wrapper">
-    <div id="budget-remaining-container"><h3><span id="remaining-budget"></span> Budget Remaining</h3></div>
-    <div id="submit-vote">
+    <div id="budget-remaining-container"><h3><span id="remaining-budget"></span>&nbsp;<span id="budget-remaining-descriptor"></span></h3></div>
+    <div id="submit-vote" class="hidden">
       <input type="text" placeholder="Enter Your Email" id="email-input">
       <span class="button" id="vote-button">VOTE</span>
     </div>
