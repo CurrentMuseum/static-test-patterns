@@ -30,10 +30,21 @@ body {
     font-family: 'Steps-Mono';
 }
 
+#time {
+      font-size: 1.2em;
+}
+
 h1 {
   color: white;
   font-size: 2em;
   padding-left: .4em;
+    position: absolute;
+  z-index: 400;
+  width: 1000px;
+}
+a {
+  position: absolute;
+  /* z-index: 2000; */
 }
 
 
@@ -108,7 +119,24 @@ box-shadow: none;
 
 }
 
+a:link {
+    color: white;
+    text-decoration: none;
+}
 
+a:visited {
+  color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    /* text-decoration: underline; */
+    cursor: grabbing;
+}
+
+a:active {
+    /* text-decoration: underline; */
+}
 
 
 #buddylist {
