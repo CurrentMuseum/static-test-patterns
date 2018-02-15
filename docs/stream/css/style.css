@@ -1,0 +1,201 @@
+
+@font-face {
+  font-family: 'Steps-Mono';
+  src: url('Steps-Mono.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Steps-Mono';
+  src: url('fonts/steps-mono.otf') format('otf');
+  src: url('fonts/steps-mono.eot'); /* IE9 Compat Modes */
+  src: url('fonts/steps-mono-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/steps-mono-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('fonts/steps-mono.ttf')  format('truetype') /* Safari, Android, iOS */
+}
+
+
+
+body {
+    background-color: black;
+/* font-family: 'Work Sans', sans-serif !important; */
+    font-size: 1.2em;
+    overflow: hidden;
+
+    /* color: rgb(207, 153, 255);
+    text-shadow: 0px 0px 14px rgba(255, 255, 255, 1); */
+
+}
+
+* {
+    font-family: 'Steps-Mono';
+}
+
+h1 {
+  color: white;
+  font-size: 2em;
+  padding-left: .4em;
+}
+
+
+.flexcontainer {
+	height:100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+
+.commingsoon {
+margin-top: -2em;
+text-align: center;
+font-size: 4em;
+padding: .2em;
+color: black;
+background-color: white;
+/* background-color: white;
+mix-blend-mode: difference; */
+}
+
+.credit {
+  color: white;
+  position: absolute !important;
+  z-index: 300;
+  top: 94%;
+  padding-left: 1em;
+}
+
+#magicInput {
+      left: 70%;
+  width: 200px;
+  font-size: 1em;
+  border-radius: 10px;
+  display: none;
+  color: black;
+  position: absolute !important;
+  z-index: 300;
+  top: 94%;
+  text-align: center;
+}
+
+textarea {
+    resize: none;
+    color: white;
+    resize: none;
+    width: 186px;
+    border: none;
+    border: none;
+overflow: auto;
+outline: none;
+
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+    background-color: rgba(255,255,255,0.2);
+}
+
+#chatbox {
+  display: inline-block;
+}
+
+#buddylist {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.chat {
+  display: none;
+
+}
+
+
+
+
+#buddylist {
+  position: absolute;
+  left: 83%;
+}
+
+#buddylistTitle {
+  background-color: rgba(255,255,255,0.3);
+  color: black;
+  border-radius: 1px;
+  padding: 2px;
+}
+
+.chatText {
+  color: white;
+}
+
+#name {
+  width: 519px;
+      display: block;
+      margin: auto;
+      margin-top: 9em;
+      height: 30px;
+      padding: 7px;
+      text-align: center;
+      font-size: 33px;
+      color: black;
+      border: none;
+      overflow: auto;
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      border-radius: 5px;
+}
+
+
+
+.fullscreen {
+  height: 100%;
+	overflow: hidden;
+	width: 100%;
+  z-index: -2;
+  color: white;
+  /* background-color: white; */
+  mix-blend-mode: difference;
+}
+.video {
+  display: block;
+	left: 0px;
+	overflow: hidden;
+	padding-bottom: 56.25%; /* 56.25% = 16:9. set ratio */
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	-webkit-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+    z-index: -2;
+}
+.video .wrapper {
+  display: block;
+	height: 300%;
+	left: 0px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+    z-index: -2;
+}
+.video iframe {
+  display: block;
+	height: 100%;
+	width: 100%;
+    z-index: -2;
+}
+
+
+#stream {
+  display: none;
+  z-index: 50;
+  position: absolute;
+left: 0;
+right: 0;
+margin: auto
+}
