@@ -1,5 +1,11 @@
 function init() {
 
+  $(".flexcontainer").click(function(){
+    console.log("cccclllicked flex");
+      window.location.href = "https://www.facebook.com/events/185686832020479/";
+  });
+
+
   var serverBaseUrl = document.domain;
 
   /*
