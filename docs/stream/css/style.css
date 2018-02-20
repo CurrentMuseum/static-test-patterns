@@ -30,11 +30,30 @@ body {
     font-family: 'Steps-Mono';
 }
 
+#time {
+      font-size: 1.2em;
+}
+
 h1 {
   color: white;
   font-size: 2em;
   padding-left: .4em;
+    position: absolute;
+  z-index: 400;
+  width: 1000px;
+    mix-blend-mode: exclusion;
 }
+
+#host {
+  background-color: black;
+  color: #ffffff;
+  position: relative;
+  font-size: 0.4em;
+  margin-top: .5em;
+  padding-bottom: .2em;
+  mix-blend-mode: exclusion;
+}
+
 
 
 .flexcontainer {
@@ -43,6 +62,7 @@ h1 {
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
+  mix-blend-mode: exclusion;
 }
 
 
@@ -50,11 +70,11 @@ h1 {
 margin-top: -2em;
 text-align: center;
 font-size: 4em;
-padding: .2em;
-color: black;
+padding-left: .2em;
+padding-right: .2em;
+padding-top: 0;
+padding-bottom: 0;color: black;
 background-color: white;
-/* background-color: white;
-mix-blend-mode: difference; */
 }
 
 .credit {
@@ -63,7 +83,9 @@ mix-blend-mode: difference; */
   z-index: 300;
   top: 94%;
   padding-left: 1em;
+    mix-blend-mode: exclusion;
 }
+
 
 #magicInput {
       left: 70%;
@@ -108,7 +130,25 @@ box-shadow: none;
 
 }
 
+a:link {
 
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+    /* text-decoration: underline; */
+    cursor: grabbing;
+}
+
+a:active {
+    /* text-decoration: underline; */
+}
 
 
 #buddylist {
