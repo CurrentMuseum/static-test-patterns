@@ -131,12 +131,17 @@ body {
 
 <script>
 
-  var startingBudget = 20000, // set the initial budget available
+  var password = prompt("Please enter the password", "");
+
+  var startingBudget = 35000, // set the initial budget available
       remainingBudget,
       lowestArtworkPrice,
       googleFormURL = 'https://script.google.com/macros/s/AKfycbwBz1uFAzkj5PXxs6mArqWoBG6EznsXL9ziY3gTUj8YJdzuX1hN/exec'; // 
 
   $(window).on('load', function() {
+    if (password==="1dent1ty") {
+      $('body').removeClass('hidden');
+    }
     $('#submit-vote').removeClass('hidden').toggle(); // hide the submission area until we vote.removeClass('hidden')
 
     countBudget(); // kick off the initial count
@@ -240,9 +245,7 @@ body {
       artwork_5: 0,
       artwork_6: 0,
       artwork_7: 0,
-      artwork_8: 0,
-      artwork_9: 0,
-      artwork_10: 0
+      artwork_8: 0
     };
     serializedVote.email = $('#email-input').val();
     
@@ -258,7 +261,7 @@ body {
 </script>
 
 </head>
-<body>
+<body class="hidden">
   <img id="logo" src="images/logo-01.svg" />
   <h2 id="subheader">Committee Acquisition Vote</h2>
   
@@ -277,7 +280,7 @@ body {
               <th>Artwork</th>
               <th>Price</th>
               <!-- <th>Title</th> -->
-              <th>Artist</th>
+              <th>Details</th>
           </tr>
       </thead>
       <tbody class="results">
@@ -288,10 +291,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_1.png" class="artwork-image"></td>
+              <td><img src="images/s1_art_01.jpg" class="artwork-image"></td>
               <td class="artwork-price">$6,000</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Snow Yunexu Hu</td>
+              <td>SNOW YUNXUE FU – 'SIDE' (2017) | Edition 1 +AP</td>
           </tr>
           <tr>
               <th>
@@ -300,10 +303,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_2.png" class="artwork-image"></td>
+              <td><img src="images/s1_art_02.jpg" class="artwork-image"></td>
               <td class="artwork-price">$8,000</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Jakob Kudusk Steensen</td>
+              <td>JAKOB KUDUSK STEENSEN – 'AQUAPHOBIA' (2017) | Edition of 4 +AP</td>
           </tr>
           <tr>
               <th>
@@ -312,10 +315,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_3.png" class="artwork-image"></td>
+              <td><img src="images/s1_art_03.jpg" class="artwork-image"></td>
               <td class="artwork-price">$5,000</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>LaTurbo Avedon</td>
+              <td>LATURBO AVEDON – 'ID' (2015) | Edition of 3 +AP</td>
           </tr>
           <tr>
               <th>
@@ -324,10 +327,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_4.png" class="artwork-image"></td>
+              <td><img src="images/s1_art_05.jpg" class="artwork-image"></td>
               <td class="artwork-price">$16,000</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Jacolby Satterwhite</td>
+              <td>JACOLBY SATTERWHITE – 'DOMESTIKA' (2017) | Edition 8 +AP</td>
           </tr>
           <tr>
               <th>
@@ -336,10 +339,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_5.png" class="artwork-image"></td>
-              <td class="artwork-price">$6,000</td>
+              <td><img src="images/s1_art_06.jpg" class="artwork-image"></td>
+              <td class="artwork-price">$3,785</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Snow Yunexu Hu</td>
+              <td>RYAN KUO – 'FAMILY MAKER' (2017 – ONGOING) | 30 seats (Editions 1-30)</td>
           </tr>
           <tr>
               <th>
@@ -348,10 +351,10 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_6.png" class="artwork-image"></td>
-              <td class="artwork-price">$1,000</td>
+              <td><img src="images/s1_art_07.jpg" class="artwork-image"></td>
+              <td class="artwork-price">$6,500</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Ryan Kuo</td>
+              <td>MERIEM BENANNI – 'FARDAOUS FUNJAB' (2015-2017) | Edition 3 +AP</td>
           </tr>
           <tr>
               <th>
@@ -360,10 +363,22 @@ body {
                 <span class="slider"></span>
                 </label>
               </th>
-              <td><img src="images/s1_image_7.png" class="artwork-image"></td>
-              <td class="artwork-price">$6,500</td>
+              <td><img src="images/s1_art_08.jpg" class="artwork-image"></td>
+              <td class="artwork-price">$5,000</td>
               <!-- <td>Placeholder Title</td> -->
-              <td>Meriem Bennani</td>
+              <td>TABITA REZAIRE – 'PREMIUM CONNECT' (2017) | Edition 3 +AP</td>
+          </tr>
+          <tr>
+              <th>
+                <label class="switch">
+                <input type="checkbox" name="artwork-acquire" artid="artwork_7">
+                <span class="slider"></span>
+                </label>
+              </th>
+              <td><img src="images/s1_art_09.jpg" class="artwork-image"></td>
+              <td class="artwork-price">$10,000</td>
+              <!-- <td>Placeholder Title</td> -->
+              <td>ANN HIRSCH – 'TWELVE' (2013) | Unique Sculpture</td>
           </tr>
         
 
