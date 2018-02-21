@@ -1,4 +1,4 @@
-
+/*
 @font-face {
   font-family: 'Steps-Mono';
   src: url('Steps-Mono.otf') format('otf');
@@ -7,22 +7,19 @@
 @font-face {
   font-family: 'Steps-Mono';
   src: url('fonts/steps-mono.otf') format('otf');
-  src: url('fonts/steps-mono.eot'); /* IE9 Compat Modes */
-  src: url('fonts/steps-mono-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/steps-mono-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('fonts/steps-mono.ttf')  format('truetype') /* Safari, Android, iOS */
+  src: url('fonts/steps-mono.eot');
+  src: url('fonts/steps-mono-webfont.woff2') format('woff2'),
+       url('fonts/steps-mono-webfont.woff') format('woff'),
+       url('fonts/steps-mono.ttf')  format('truetype')
 }
 
 
 
 body {
     background-color: black;
-/* font-family: 'Work Sans', sans-serif !important; */
-    font-size: 1.2em;
+    font-size: 1.2em
     overflow: hidden;
 
-    /* color: rgb(207, 153, 255);
-    text-shadow: 0px 0px 14px rgba(255, 255, 255, 1); */
 
 }
 
@@ -142,12 +139,10 @@ a:visited {
 }
 
 a:hover {
-    /* text-decoration: underline; */
     cursor: grabbing;
 }
 
 a:active {
-    /* text-decoration: underline; */
 }
 
 
@@ -194,14 +189,13 @@ a:active {
 	width: 100%;
   z-index: -2;
   color: white;
-  /* background-color: white; */
   mix-blend-mode: difference;
 }
 .video {
   display: block;
 	left: 0px;
 	overflow: hidden;
-	padding-bottom: 56.25%; /* 56.25% = 16:9. set ratio */
+	padding-bottom: 56.25%;
 	position: absolute;
 	top: 50%;
 	width: 100%;
@@ -238,4 +232,4 @@ a:active {
 left: 0;
 right: 0;
 margin: auto
-}
+}  */
