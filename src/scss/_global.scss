@@ -159,7 +159,7 @@ a {
     margin-bottom: 1rem;
     font-family: 'Media77', sans-serif;
     font-size: 2rem;
-    line-height: 1em;
+    line-height: 1.2em;
     word-spacing: -.04em;
     letter-spacing: -.02em;
   }
@@ -175,6 +175,10 @@ a {
 
   .quiet {
     font-size: .75em;
+  }
+
+  .small {
+    font-size: .5rem;
   }
 }
 
